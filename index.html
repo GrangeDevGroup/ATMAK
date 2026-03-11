@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ATMAK | Android Tactical Multipurpose Assessment Kit</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -27,7 +30,7 @@ line-height:1.6;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* background */
 
 #bg{
 position:fixed;
@@ -38,7 +41,7 @@ height:100%;
 z-index:-1;
 }
 
-/* NAV */
+/* nav */
 
 nav{
 position:sticky;
@@ -73,7 +76,7 @@ font-size:14px;
 
 .nav-links a:hover{color:#fff}
 
-/* HERO */
+/* hero */
 
 header{
 padding:110px 20px 120px;
@@ -129,7 +132,7 @@ transition:.2s;
 
 .btn:hover{transform:translateY(-2px)}
 
-/* LAYOUT */
+/* layout */
 
 .wrapper{
 max-width:1200px;
@@ -144,7 +147,7 @@ margin-bottom:30px;
 letter-spacing:2px;
 }
 
-/* GRID */
+/* cards */
 
 .grid{
 display:grid;
@@ -153,15 +156,8 @@ gap:25px;
 margin-bottom:60px;
 }
 
-/* center last row */
-.grid .card:nth-last-child(2){
-grid-column:2;
-}
-
-.grid .card:nth-last-child(1){
-grid-column:3;
-}
-/* CARDS */
+.grid .card:nth-last-child(2){grid-column:2}
+.grid .card:nth-last-child(1){grid-column:3}
 
 .card{
 background:rgba(10,10,10,0.85);
@@ -171,7 +167,6 @@ padding:25px;
 transition:.2s;
 display:flex;
 flex-direction:column;
-height:100%;
 }
 
 .card:hover{
@@ -179,23 +174,20 @@ transform:translateY(-5px);
 border-color:#fff;
 }
 
-.card h3{
-margin-bottom:10px;
-}
+.card h3{margin-bottom:10px}
 
 .card p{
 color:var(--muted);
 font-size:14px;
-margin-top:auto;
 }
 
-/* TWO COLUMN */
+/* feature sections */
 
-.two-col{
+.features-grid{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-margin-bottom:60px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:40px;
+margin-bottom:70px;
 }
 
 .feature-list{
@@ -209,7 +201,7 @@ color:#d2d2d2;
 font-size:14px;
 }
 
-/* SLIDESHOW */
+/* slideshow */
 
 .slideshow{
 position:relative;
@@ -222,10 +214,7 @@ border:1px solid var(--border);
 
 .slide{display:none}
 
-.slide img{
-width:100%;
-display:block;
-}
+.slide img{width:100%}
 
 .prev,.next{
 position:absolute;
@@ -242,15 +231,7 @@ cursor:pointer;
 .prev{left:10px}
 .next{right:10px}
 
-.prev:hover,.next:hover{
-background:#fff;
-color:#000;
-}
-
-.dots{
-text-align:center;
-margin-top:12px;
-}
+.dots{text-align:center;margin-top:12px}
 
 .dot{
 height:10px;
@@ -264,16 +245,33 @@ cursor:pointer;
 
 .dot.active{background:#fff}
 
-/* PLATFORM */
+/* platform */
 
-.platform-box{
-background:rgba(10,10,10,0.9);
-border:1px solid var(--border);
-padding:30px;
-border-radius:10px;
+.platform-list{
+list-style:none;
 }
 
-/* DOWNLOAD */
+.platform-list li{
+display:flex;
+align-items:center;
+gap:14px;
+padding:14px 0;
+border-bottom:1px solid var(--border);
+}
+
+.platform-list i{
+font-size:20px;
+width:28px;
+text-align:center;
+}
+
+.platform-list span{
+margin-left:auto;
+color:var(--muted);
+font-size:13px;
+}
+
+/* download */
 
 .download{
 text-align:center;
@@ -288,16 +286,6 @@ text-align:center;
 padding:40px 20px;
 font-size:13px;
 color:#888;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-.two-col{grid-template-columns:1fr}
-}
-
-@media(max-width:700px){
-.logo-title{font-size:40px}
 }
 
 </style>
@@ -324,14 +312,18 @@ color:#888;
 <img src="atmak-logo.png">
 
 <div class="logo-title">ATMAK</div>
-<div class="tagline">Android Tactical Multipurpose Assessment Kit</div>
+
+<div class="tagline">
+Android Tactical Multipurpose Assessment Kit
+</div>
 
 <p class="description">
-ATMAK is a tactical situational awareness and mission coordination platform designed for Android devices and cross-platform environments.
+A tactical situational awareness and mission coordination platform
+built for Android and cross-platform environments.
 </p>
 
 <div class="hero-buttons">
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak" target="_blank">Purchase on GumRoad</a>
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase</a>
 <a class="btn btn-secondary" href="#features">Explore Features</a>
 </div>
 
@@ -343,81 +335,120 @@ ATMAK is a tactical situational awareness and mission coordination platform desi
 
 <div class="grid">
 
-<div class="card"><h3>Interactive Tactical Maps</h3><p>Advanced mapping layers, GPS tracking and navigation.</p></div>
+<div class="card">
+<h3>Interactive Tactical Maps</h3>
+<p>Advanced mapping layers, GPS tracking, and real-time situational awareness.</p>
+</div>
 
-<div class="card"><h3>Mission Planning</h3><p>PACE planning, SITREPs and operational coordination.</p></div>
+<div class="card">
+<h3>Mission Planning</h3>
+<p>PACE planning, checkpoints, routes, and operational coordination tools.</p>
+</div>
 
-<div class="card"><h3>Field Intelligence</h3><p>Incident reports, intel collection and investigation tools.</p></div>
+<div class="card">
+<h3>Field Intelligence</h3>
+<p>Collect intel reports, incidents, and investigation records.</p>
+</div>
 
-<div class="card"><h3>Team Coordination</h3><p>Live location sharing and collaboration tools.</p></div>
+<div class="card">
+<h3>Team Coordination</h3>
+<p>Track team members, share locations, and coordinate field units.</p>
+</div>
 
-<div class="card"><h3>Offline Operation</h3><p>Designed to work offline with local data storage.</p></div>
+<div class="card">
+<h3>Offline Operation</h3>
+<p>Designed for environments without network connectivity.</p>
+</div>
 
-<div class="card"><h3>Secure Data</h3><p>Encrypted backups and peer-to-peer transfer options.</p></div>
+<div class="card">
+<h3>Secure Data</h3>
+<p>Encrypted backups, data export, and peer-to-peer transfer.</p>
+</div>
 
 </div>
 
-<div class="two-col">
+<h2 class="section-title">System Capabilities</h2>
+
+<div class="features-grid">
 
 <div>
 <h3>Map System</h3>
 <ul class="feature-list">
 <li>19+ map layers</li>
-<li>Waypoints and tactical symbols</li>
+<li>Waypoints & asset markers</li>
+<li>MIL-STD-2525 symbols</li>
 <li>Track recording</li>
-<li>Distance measurement tools</li>
 <li>MGRS / UTM / DMS coordinates</li>
-<li>KML & GPX support</li>
+<li>KML / GPX support</li>
 </ul>
 </div>
 
 <div>
-<h3>Team Coordination</h3>
+<h3>Navigation</h3>
 <ul class="feature-list">
-<li>Team rosters</li>
-<li>Location sharing</li>
-<li>Mission checkpoints</li>
-<li>Peer-to-peer sync</li>
+<li>Turn-by-turn routing</li>
+<li>Multiple route options</li>
+<li>Route avoidance options</li>
+<li>Destination search</li>
+<li>GPS location centering</li>
 </ul>
 </div>
 
+<div>
+<h3>Team Operations</h3>
+<ul class="feature-list">
+<li>Team roster management</li>
+<li>Live team location tracking</li>
+<li>Shared markers</li>
+<li>Peer-to-peer GPS sync</li>
+</ul>
 </div>
 
-<h2 class="section-title" id="screens">Application Preview</h2>
-
-<div class="slideshow">
-
-<div class="slide"><img src="1.jpg"></div>
-<div class="slide"><img src="2.jpg"></div>
-<div class="slide"><img src="3.jpg"></div>
-<div class="slide"><img src="4.jpg"></div>
-<div class="slide"><img src="5.jpg"></div>
-<div class="slide"><img src="6.jpg"></div>
-
-<button class="prev" onclick="changeSlide(-1)">❮</button>
-<button class="next" onclick="changeSlide(1)">❯</button>
-
+<div>
+<h3>SITREPs</h3>
+<ul class="feature-list">
+<li>Create situation reports</li>
+<li>Attach to map locations</li>
+<li>Status tracking</li>
+<li>Priority tagging</li>
+</ul>
 </div>
 
-<div class="dots">
-<span class="dot" onclick="currentSlide(1)"></span>
-<span class="dot" onclick="currentSlide(2)"></span>
-<span class="dot" onclick="currentSlide(3)"></span>
-<span class="dot" onclick="currentSlide(4)"></span>
-<span class="dot" onclick="currentSlide(5)"></span>
-<span class="dot" onclick="currentSlide(6)"></span>
+<div>
+<h3>Mission Planning</h3>
+<ul class="feature-list">
+<li>PACE planning system</li>
+<li>Mission checkpoints</li>
+<li>Operational task planning</li>
+<li>Linked mission locations</li>
+</ul>
+</div>
+
+<div>
+<h3>Data & Sync</h3>
+<ul class="feature-list">
+<li>Encrypted backups</li>
+<li>JSON / KML / GPX export</li>
+<li>WebRTC P2P transfers</li>
+<li>Offline local storage</li>
+</ul>
+</div>
+
 </div>
 
 <h2 class="section-title" id="platforms">Platform Support</h2>
 
-<div class="platform-box">
-<ul class="feature-list">
-<li>Android (APK / AAB)</li>
-<li>Web</li>
-<li>Windows (EXE / MSI)</li>
-<li>Linux (tar.gz / deb)</li>
+<ul class="platform-list">
+
+<li><i class="fa-brands fa-android"></i> Android <span>APK / AAB</span></li>
+
+<li><i class="fa-solid fa-globe"></i> Web <span>Browser</span></li>
+
+<li><i class="fa-brands fa-windows"></i> Windows <span>EXE / MSI</span></li>
+
+<li><i class="fa-brands fa-linux"></i> Linux <span>tar.gz / deb</span></li>
+
 </ul>
-</div>
 
 </div>
 
@@ -429,7 +460,7 @@ ATMAK is a tactical situational awareness and mission coordination platform desi
 Access releases and downloads via GumRoad.
 </p>
 
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak" target="_blank">
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">
 Purchase on GumRoad
 </a>
 
@@ -441,54 +472,13 @@ ATMAK — Android Tactical Multipurpose Assessment Kit
 
 <script>
 
-/* SLIDESHOW */
-
-let slideIndex=0;
-
-function showSlides(){
-
-let slides=document.getElementsByClassName("slide");
-let dots=document.getElementsByClassName("dot");
-
-for(let i=0;i<slides.length;i++){
-slides[i].style.display="none";
-}
-
-slideIndex++;
-
-if(slideIndex>slides.length){slideIndex=1;}
-
-for(let i=0;i<dots.length;i++){
-dots[i].classList.remove("active");
-}
-
-slides[slideIndex-1].style.display="block";
-dots[slideIndex-1].classList.add("active");
-
-setTimeout(showSlides,4000);
-
-}
-
-showSlides();
-
-function changeSlide(n){
-slideIndex+=n-1;
-showSlides();
-}
-
-function currentSlide(n){
-slideIndex=n-1;
-showSlides();
-}
-
-/* INTERACTIVE TACTICAL BACKGROUND */
+/* tactical background */
 
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 
 let w,h;
 let markers=[];
-let sweepAngle=0;
 
 function resize(){
 w=canvas.width=window.innerWidth;
@@ -505,9 +495,7 @@ this.y=Math.random()*h;
 this.pulse=Math.random()*Math.PI*2;
 }
 
-update(){
-this.pulse+=0.04;
-}
+update(){this.pulse+=0.04}
 
 draw(){
 
@@ -524,18 +512,16 @@ ctx.strokeStyle="rgba(255,255,255,0.15)";
 ctx.stroke();
 
 }
+
 }
 
-for(let i=0;i<30;i++){
-markers.push(new Marker());
-}
+for(let i=0;i<30;i++)markers.push(new Marker());
 
 function drawGrid(){
 
 const size=80;
 
 ctx.strokeStyle="rgba(255,255,255,0.05)";
-ctx.lineWidth=1;
 
 for(let x=0;x<w;x+=size){
 ctx.beginPath();
@@ -553,41 +539,11 @@ ctx.stroke();
 
 }
 
-function drawRadarSweep(){
-
-const cx=w/2;
-const cy=h/2;
-const radius=Math.min(w,h)/2;
-
-sweepAngle+=0.002;
-
-ctx.save();
-
-ctx.translate(cx,cy);
-ctx.rotate(sweepAngle);
-
-const grad=ctx.createRadialGradient(0,0,0,0,0,radius);
-grad.addColorStop(0,"rgba(255,255,255,0.05)");
-grad.addColorStop(1,"rgba(0,0,0,0)");
-
-ctx.beginPath();
-ctx.moveTo(0,0);
-ctx.arc(0,0,radius,0,0.25);
-ctx.closePath();
-
-ctx.fillStyle=grad;
-ctx.fill();
-
-ctx.restore();
-
-}
-
 function animate(){
 
 ctx.clearRect(0,0,w,h);
 
 drawGrid();
-drawRadarSweep();
 
 markers.forEach(m=>{
 m.update();
