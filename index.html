@@ -3,15 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ATMAK | Android Tactical Multipurpose Assessment Kit</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
 :root{
 --bg:#000;
 --panel:#0b0b0b;
@@ -30,8 +27,7 @@ line-height:1.6;
 overflow-x:hidden;
 }
 
-/* background */
-
+/* BACKGROUND */
 #bg{
 position:fixed;
 top:0;
@@ -41,8 +37,7 @@ height:100%;
 z-index:-1;
 }
 
-/* nav */
-
+/* NAV */
 nav{
 position:sticky;
 top:0;
@@ -76,8 +71,7 @@ font-size:14px;
 
 .nav-links a:hover{color:#fff}
 
-/* hero */
-
+/* HERO */
 header{
 padding:110px 20px 120px;
 text-align:center;
@@ -132,8 +126,7 @@ transition:.2s;
 
 .btn:hover{transform:translateY(-2px)}
 
-/* layout */
-
+/* LAYOUT */
 .wrapper{
 max-width:1200px;
 margin:auto;
@@ -147,8 +140,7 @@ margin-bottom:30px;
 letter-spacing:2px;
 }
 
-/* cards */
-
+/* CORE SYSTEM CARDS */
 .grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -179,10 +171,10 @@ border-color:#fff;
 .card p{
 color:var(--muted);
 font-size:14px;
+margin-top:auto;
 }
 
-/* feature sections */
-
+/* FEATURES GRID */
 .features-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -201,8 +193,7 @@ color:#d2d2d2;
 font-size:14px;
 }
 
-/* slideshow */
-
+/* SLIDESHOW */
 .slideshow{
 position:relative;
 max-width:900px;
@@ -213,8 +204,7 @@ border:1px solid var(--border);
 }
 
 .slide{display:none}
-
-.slide img{width:100%}
+.slide img{width:100%; display:block;}
 
 .prev,.next{
 position:absolute;
@@ -230,9 +220,9 @@ cursor:pointer;
 
 .prev{left:10px}
 .next{right:10px}
+.prev:hover,.next:hover{background:#fff;color:#000}
 
 .dots{text-align:center;margin-top:12px}
-
 .dot{
 height:10px;
 width:10px;
@@ -242,13 +232,13 @@ border-radius:50%;
 display:inline-block;
 cursor:pointer;
 }
-
 .dot.active{background:#fff}
 
-/* platform */
-
+/* PLATFORM SUPPORT */
 .platform-list{
 list-style:none;
+padding:0;
+margin:0;
 }
 
 .platform-list li{
@@ -271,8 +261,7 @@ color:var(--muted);
 font-size:13px;
 }
 
-/* download */
-
+/* DOWNLOAD */
 .download{
 text-align:center;
 padding:90px 20px;
@@ -288,6 +277,14 @@ font-size:13px;
 color:#888;
 }
 
+/* MOBILE */
+@media(max-width:900px){
+.grid{grid-template-columns:1fr 1fr}
+.features-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+.logo-title{font-size:40px}
+}
 </style>
 </head>
 
@@ -308,69 +305,52 @@ color:#888;
 </nav>
 
 <header>
-
 <img src="atmak-logo.png">
-
 <div class="logo-title">ATMAK</div>
-
-<div class="tagline">
-Android Tactical Multipurpose Assessment Kit
-</div>
-
+<div class="tagline">Android Tactical Multipurpose Assessment Kit</div>
 <p class="description">
-A tactical situational awareness and mission coordination platform
-built for Android and cross-platform environments.
+A tactical situational awareness and mission coordination platform built for Android and cross-platform environments.
 </p>
-
 <div class="hero-buttons">
 <a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase</a>
 <a class="btn btn-secondary" href="#features">Explore Features</a>
 </div>
-
 </header>
 
 <div class="wrapper" id="features">
 
 <h2 class="section-title">Core System</h2>
-
 <div class="grid">
-
-<div class="card">
-<h3>Interactive Tactical Maps</h3>
-<p>Advanced mapping layers, GPS tracking, and real-time situational awareness.</p>
+<div class="card"><h3>Interactive Tactical Maps</h3><p>Advanced mapping layers, GPS tracking, route planning, waypoints, markers, MIL-STD symbols, measurement tools, and track recording.</p></div>
+<div class="card"><h3>Mission Planning</h3><p>PACE planning, checkpoints, routes, operational task coordination, and linked mission locations.</p></div>
+<div class="card"><h3>Field Intelligence</h3><p>Intel collection, incident reports, evidence tracking, and tactical investigation tools.</p></div>
+<div class="card"><h3>Team Coordination</h3><p>Team roster, live location sharing, peer-to-peer synchronization, and collaborative operational tools.</p></div>
+<div class="card"><h3>Offline Operation</h3><p>Full offline-first design with local data storage, optional syncing, and safe UI for notches and indicators.</p></div>
+<div class="card"><h3>Secure Data</h3><p>Encrypted backups, JSON/KML/GPX export, WebRTC P2P transfers, and secure recovery.</p></div>
 </div>
 
-<div class="card">
-<h3>Mission Planning</h3>
-<p>PACE planning, checkpoints, routes, and operational coordination tools.</p>
+<h2 class="section-title" id="screens">Application Preview</h2>
+<div class="slideshow">
+<div class="slide"><img src="1.jpg"></div>
+<div class="slide"><img src="2.jpg"></div>
+<div class="slide"><img src="3.jpg"></div>
+<div class="slide"><img src="4.jpg"></div>
+<div class="slide"><img src="5.jpg"></div>
+<div class="slide"><img src="6.jpg"></div>
+<button class="prev" onclick="changeSlide(-1)">❮</button>
+<button class="next" onclick="changeSlide(1)">❯</button>
 </div>
-
-<div class="card">
-<h3>Field Intelligence</h3>
-<p>Collect intel reports, incidents, and investigation records.</p>
-</div>
-
-<div class="card">
-<h3>Team Coordination</h3>
-<p>Track team members, share locations, and coordinate field units.</p>
-</div>
-
-<div class="card">
-<h3>Offline Operation</h3>
-<p>Designed for environments without network connectivity.</p>
-</div>
-
-<div class="card">
-<h3>Secure Data</h3>
-<p>Encrypted backups, data export, and peer-to-peer transfer.</p>
-</div>
-
+<div class="dots">
+<span class="dot" onclick="currentSlide(1)"></span>
+<span class="dot" onclick="currentSlide(2)"></span>
+<span class="dot" onclick="currentSlide(3)"></span>
+<span class="dot" onclick="currentSlide(4)"></span>
+<span class="dot" onclick="currentSlide(5)"></span>
+<span class="dot" onclick="currentSlide(6)"></span>
 </div>
 
 <h2 class="section-title">System Capabilities</h2>
-
 <div class="features-grid">
-
 <div>
 <h3>Map System</h3>
 <ul class="feature-list">
@@ -382,7 +362,6 @@ built for Android and cross-platform environments.
 <li>KML / GPX support</li>
 </ul>
 </div>
-
 <div>
 <h3>Navigation</h3>
 <ul class="feature-list">
@@ -393,7 +372,6 @@ built for Android and cross-platform environments.
 <li>GPS location centering</li>
 </ul>
 </div>
-
 <div>
 <h3>Team Operations</h3>
 <ul class="feature-list">
@@ -403,7 +381,6 @@ built for Android and cross-platform environments.
 <li>Peer-to-peer GPS sync</li>
 </ul>
 </div>
-
 <div>
 <h3>SITREPs</h3>
 <ul class="feature-list">
@@ -413,7 +390,6 @@ built for Android and cross-platform environments.
 <li>Priority tagging</li>
 </ul>
 </div>
-
 <div>
 <h3>Mission Planning</h3>
 <ul class="feature-list">
@@ -423,7 +399,6 @@ built for Android and cross-platform environments.
 <li>Linked mission locations</li>
 </ul>
 </div>
-
 <div>
 <h3>Data & Sync</h3>
 <ul class="feature-list">
@@ -433,37 +408,24 @@ built for Android and cross-platform environments.
 <li>Offline local storage</li>
 </ul>
 </div>
-
 </div>
 
 <h2 class="section-title" id="platforms">Platform Support</h2>
-
 <ul class="platform-list">
-
 <li><i class="fa-brands fa-android"></i> Android <span>APK / AAB</span></li>
-
 <li><i class="fa-solid fa-globe"></i> Web <span>Browser</span></li>
-
 <li><i class="fa-brands fa-windows"></i> Windows <span>EXE / MSI</span></li>
-
 <li><i class="fa-brands fa-linux"></i> Linux <span>tar.gz / deb</span></li>
-
 </ul>
 
 </div>
 
 <div class="download" id="download">
-
 <h2>Purchase ATMAK</h2>
-
 <p style="color:#cfcfcf;margin-bottom:30px">
 Access releases and downloads via GumRoad.
 </p>
-
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">
-Purchase on GumRoad
-</a>
-
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase on GumRoad</a>
 </div>
 
 <footer>
@@ -471,91 +433,60 @@ ATMAK — Android Tactical Multipurpose Assessment Kit
 </footer>
 
 <script>
+/* SLIDESHOW */
+let slideIndex=0;
+function showSlides(){
+let slides=document.getElementsByClassName("slide");
+let dots=document.getElementsByClassName("dot");
+for(let i=0;i<slides.length;i++) slides[i].style.display="none";
+slideIndex++; if(slideIndex>slides.length) slideIndex=1;
+for(let i=0;i<dots.length;i++) dots[i].classList.remove("active");
+slides[slideIndex-1].style.display="block";
+dots[slideIndex-1].classList.add("active");
+setTimeout(showSlides,4000);
+}
+showSlides();
+function changeSlide(n){slideIndex+=n-1; showSlides();}
+function currentSlide(n){slideIndex=n-1; showSlides();}
 
-/* tactical background */
-
+/* INTERACTIVE BACKGROUND */
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
-
-let w,h;
-let markers=[];
-
-function resize(){
-w=canvas.width=window.innerWidth;
-h=canvas.height=window.innerHeight;
-}
-
+let w,h,markers=[],sweepAngle=0;
+function resize(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;}
 window.addEventListener("resize",resize);
 resize();
 
 class Marker{
-constructor(){
-this.x=Math.random()*w;
-this.y=Math.random()*h;
-this.pulse=Math.random()*Math.PI*2;
+constructor(){this.x=Math.random()*w; this.y=Math.random()*h; this.pulse=Math.random()*Math.PI*2;}
+update(){this.pulse+=0.04;}
+draw(){let r=2+Math.sin(this.pulse)*2; ctx.beginPath(); ctx.arc(this.x,this.y,r,0,Math.PI*2); ctx.fillStyle="rgba(255,255,255,0.8)"; ctx.fill(); ctx.beginPath(); ctx.arc(this.x,this.y,r+6,0,Math.PI*2); ctx.strokeStyle="rgba(255,255,255,0.15)"; ctx.stroke();}
 }
 
-update(){this.pulse+=0.04}
+for(let i=0;i<30;i++) markers.push(new Marker());
 
-draw(){
-
-let r=2+Math.sin(this.pulse)*2;
-
-ctx.beginPath();
-ctx.arc(this.x,this.y,r,0,Math.PI*2);
-ctx.fillStyle="rgba(255,255,255,0.8)";
-ctx.fill();
-
-ctx.beginPath();
-ctx.arc(this.x,this.y,r+6,0,Math.PI*2);
-ctx.strokeStyle="rgba(255,255,255,0.15)";
-ctx.stroke();
-
+function drawGrid(){const size=80; ctx.strokeStyle="rgba(255,255,255,0.05)";
+for(let x=0;x<w;x+=size){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+for(let y=0;y<h;y+=size){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
 }
 
-}
-
-for(let i=0;i<30;i++)markers.push(new Marker());
-
-function drawGrid(){
-
-const size=80;
-
-ctx.strokeStyle="rgba(255,255,255,0.05)";
-
-for(let x=0;x<w;x+=size){
-ctx.beginPath();
-ctx.moveTo(x,0);
-ctx.lineTo(x,h);
-ctx.stroke();
-}
-
-for(let y=0;y<h;y+=size){
-ctx.beginPath();
-ctx.moveTo(0,y);
-ctx.lineTo(w,y);
-ctx.stroke();
-}
-
+function drawRadarSweep(){
+const cx=w/2; const cy=h/2; const radius=Math.min(w,h)/2;
+sweepAngle+=0.002; ctx.save(); ctx.translate(cx,cy); ctx.rotate(sweepAngle);
+const grad=ctx.createRadialGradient(0,0,0,0,0,radius);
+grad.addColorStop(0,"rgba(255,255,255,0.05)"); grad.addColorStop(1,"rgba(0,0,0,0)");
+ctx.beginPath(); ctx.moveTo(0,0); ctx.arc(0,0,radius,0,0.25); ctx.closePath();
+ctx.fillStyle=grad; ctx.fill(); ctx.restore();
 }
 
 function animate(){
-
 ctx.clearRect(0,0,w,h);
-
 drawGrid();
-
-markers.forEach(m=>{
-m.update();
-m.draw();
-});
-
+drawRadarSweep();
+markers.forEach(m=>{m.update(); m.draw();});
 requestAnimationFrame(animate);
-
 }
-
 animate();
-
 </script>
 
 </body>
