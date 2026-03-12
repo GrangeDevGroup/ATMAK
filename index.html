@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ATMAK — Offline-first field app for tactical planning, hunting, commercial use, and business. Maps, team coordination, reports, waypoints. Military and civilian. Android, Windows, Linux, Web.">
 <title>ATMAK | Android Tactical Multipurpose Assessment Kit</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,10 +12,14 @@
 <style>
 :root{
 --bg:#000;
---panel:#0b0b0b;
+--panel:#0a0e0a;
+--panel-hover:#0f1510;
 --border:#1c1c1c;
+--border-accent:rgba(56,142,60,0.4);
 --text:#fff;
 --muted:#b8b8b8;
+--accent:#4CAF50;
+--accent-dim:rgba(76,175,80,0.25);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -67,9 +72,57 @@ margin-left:20px;
 color:#ccc;
 text-decoration:none;
 font-size:14px;
+transition:color 0.2s ease, border-color 0.2s ease;
+border-bottom:2px solid transparent;
+padding-bottom:2px;
 }
 
-.nav-links a:hover{color:#fff}
+.nav-links a:hover{color:#fff; border-bottom-color:var(--accent)}
+
+/* Mobile menu toggle */
+.nav-toggle{
+display:none;
+background:none;
+border:none;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+padding:5px;
+}
+
+@media(max-width:768px){
+.nav-toggle{
+display:block;
+}
+
+.nav-links{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+right:0;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(10px);
+flex-direction:column;
+padding:20px;
+border-bottom:1px solid var(--border);
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.nav-links a{
+margin:10px 0;
+font-size:16px;
+padding:10px 0;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.nav-links a:last-child{
+border-bottom:none;
+}
+}
 
 /* HERO */
 header{
@@ -103,6 +156,12 @@ margin-left:auto;
 margin-right:auto;
 color:#d0d0d0;
 }
+.hero-trust{
+margin-top:16px;
+font-size:13px;
+color:var(--muted);
+letter-spacing:0.5px;
+}
 
 .hero-buttons{
 margin-top:40px;
@@ -110,6 +169,50 @@ display:flex;
 justify-content:center;
 flex-wrap:wrap;
 gap:15px;
+}
+
+/* USE CASES – who ATMAK is for */
+.use-cases{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+margin-bottom:60px;
+padding:0 10px;
+}
+.use-case-card{
+text-align:center;
+padding:24px 18px;
+background:rgba(10,14,10,0.9);
+border:1px solid var(--border);
+border-radius:10px;
+transition:border-color .2s, box-shadow .2s;
+}
+.use-case-card:hover{
+border-color:var(--border-accent);
+box-shadow:0 8px 30px rgba(0,0,0,0.35);
+}
+.use-case-card .uc-icon{
+font-size:28px;
+margin-bottom:12px;
+color:var(--accent);
+}
+.use-case-card h3{
+font-size:16px;
+margin-bottom:8px;
+font-weight:600;
+}
+.use-case-card p{
+font-size:13px;
+color:var(--muted);
+line-height:1.45;
+margin:0;
+}
+@media(max-width:900px){
+.use-cases{grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:50px}
+}
+@media(max-width:480px){
+.use-cases{grid-template-columns:1fr;gap:12px;margin-bottom:40px}
+.use-case-card{padding:20px 16px}
 }
 
 .btn{
@@ -121,10 +224,12 @@ font-size:14px;
 transition:.2s;
 }
 
-.btn-primary{background:#fff;color:#000}
-.btn-secondary{border:1px solid #fff;color:#fff}
+.btn-primary{background:#fff;color:#000;box-shadow:0 4px 20px rgba(255,255,255,0.15)}
+.btn-secondary{border:1px solid rgba(255,255,255,0.5);color:#fff;background:rgba(255,255,255,0.05)}
 
 .btn:hover{transform:translateY(-2px)}
+.btn-primary:hover{box-shadow:0 6px 28px rgba(255,255,255,0.25)}
+.btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,0.1)}
 
 /* LAYOUT */
 .wrapper{
@@ -138,6 +243,18 @@ font-family:"Orbitron";
 font-size:32px;
 margin-bottom:30px;
 letter-spacing:2px;
+position:relative;
+padding-bottom:12px;
+}
+.section-title::after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:60px;
+height:3px;
+background:linear-gradient(90deg,var(--accent),transparent);
+border-radius:2px;
 }
 
 /* CORE SYSTEM CARDS */
@@ -163,10 +280,12 @@ flex-direction:column;
 
 .card:hover{
 transform:translateY(-5px);
-border-color:#fff;
+border-color:var(--border-accent);
+box-shadow:0 12px 40px rgba(0,0,0,0.4),0 0 0 1px var(--accent-dim);
 }
 
-.card h3{margin-bottom:10px}
+.card h3{margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.card h3 .block-icon{color:var(--accent);font-size:18px;width:24px;text-align:center}
 
 .card p{
 color:var(--muted);
@@ -174,12 +293,119 @@ font-size:14px;
 margin-top:auto;
 }
 
+/* CLEAN SECTION – same style for all major sections */
+.clean-section{
+margin-bottom:70px;
+padding:35px 28px;
+border:1px solid var(--border);
+border-radius:12px;
+background:linear-gradient(180deg,rgba(10,14,10,0.95) 0%,rgba(5,8,5,0.98) 100%);
+box-shadow:0 18px 45px rgba(0,0,0,0.35);
+}
+.clean-section .section-title{margin-bottom:20px}
+.section-title .section-icon{
+margin-right:12px;
+color:var(--accent);
+font-size:0.9em;
+vertical-align:middle;
+}
+.clean-section .section-intro{
+color:var(--muted);
+font-size:14px;
+margin-bottom:24px;
+max-width:720px;
+}
+
+/* MIL-STD-2525 TACTICAL SYMBOLS – real symbols from app SIDC */
+.symbols-section .symbols-intro{ margin-bottom:28px }
+#mil-symbols-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+gap:12px 20px;
+margin-bottom:20px;
+}
+.mil-symbol-cell{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+padding:14px 10px;
+background:rgba(0,0,0,0.4);
+border:1px solid var(--border);
+border-radius:8px;
+transition:border-color .2s, box-shadow .2s;
+}
+.mil-symbol-cell:hover{
+border-color:var(--border-accent);
+box-shadow:0 0 20px var(--accent-dim);
+}
+.mil-symbol-cell .mil-symbol-svg{
+width:40px;
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.mil-symbol-cell .mil-symbol-svg svg{ max-width:100%; max-height:100%; object-fit:contain }
+.mil-symbol-cell .mil-symbol-svg .sym{ font-size:28px; line-height:1; display:block }
+.mil-symbol-cell .label{
+font-size:12px;
+color:#d0d0d0;
+text-align:center;
+line-height:1.25;
+}
+.symbol-strip{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:8px 24px;
+margin-bottom:24px;
+}
+.mil-symbol-item{
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px 16px;
+background:rgba(0,0,0,0.4);
+border:1px solid var(--border);
+border-radius:8px;
+transition:border-color .2s, box-shadow .2s;
+}
+.mil-symbol-item:hover{
+border-color:var(--border-accent);
+box-shadow:0 0 20px var(--accent-dim);
+}
+.mil-symbol-item .sym{
+font-size:28px;
+line-height:1;
+min-width:36px;
+text-align:center;
+filter:drop-shadow(0 0 6px var(--accent-dim));
+}
+.mil-symbol-item .label{
+font-size:13px;
+color:#d0d0d0;
+}
+.mil-symbol-item.friendly .sym{color:#66BB6A}
+.mil-symbol-item.hostile .sym{color:#FF5252}
+.mil-symbol-item.neutral .sym{color:#FFCA28}
+.mil-symbol-item.medical .sym{color:#42A5F5}
+.mil-symbol-item.hazard .sym{color:#FF7043}
+
+.feature-block h3{ display:flex; align-items:center; gap:10px; margin-bottom:12px }
+.feature-block h3 .block-icon{ color:var(--accent); font-size:18px; width:24px; text-align:center }
+
 /* FEATURES GRID */
 .features-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:40px;
 margin-bottom:70px;
+padding:32px 28px;
+border-radius:12px;
+border:1px solid var(--border);
+background:linear-gradient(180deg,rgba(6,9,6,0.96) 0%,rgba(2,3,2,0.98) 100%);
+box-shadow:0 18px 45px rgba(0,0,0,0.55);
 }
 
 .feature-list{
@@ -198,13 +424,32 @@ font-size:14px;
 position:relative;
 max-width:900px;
 margin:60px auto;
-border-radius:10px;
+border-radius:12px;
 overflow:hidden;
 border:1px solid var(--border);
+box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(76,175,80,0.08);
+background:#000;
 }
 
-.slide{display:none}
-.slide img{width:100%; display:block;}
+.slide{
+display:none;
+width:100%;
+height:70vh;
+max-height:600px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#000;
+}
+
+.slide img{
+max-width:100%;
+max-height:100%;
+width:auto;
+height:auto;
+object-fit:contain;
+display:block;
+}
 
 .prev,.next{
 position:absolute;
@@ -265,10 +510,12 @@ font-size:13px;
 .download{
 text-align:center;
 padding:90px 20px;
-background:rgba(5,5,5,0.9);
+background:linear-gradient(180deg,rgba(5,8,5,0.97) 0%,rgba(0,0,0,0.99) 100%);
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
 }
+.download h2{margin-bottom:12px}
+.download .btn{margin-top:10px; font-size:15px; padding:16px 32px}
 
 footer{
 text-align:center;
@@ -282,8 +529,61 @@ color:#888;
 .grid{grid-template-columns:1fr 1fr}
 .features-grid{grid-template-columns:1fr}
 }
-@media(max-width:700px){
-.logo-title{font-size:40px}
+
+@media(max-width:768px){
+.logo-title{font-size:32px;letter-spacing:3px}
+.tagline{font-size:16px}
+.description{font-size:14px}
+.hero-trust{font-size:12px}
+header{padding:80px 20px 90px}
+.hero-buttons{flex-direction:column;align-items:center}
+.btn{width:100%;max-width:280px;text-align:center}
+.nav-inner{padding:12px 20px}
+.slideshow{margin:40px 20px}
+.slide{height:50vh;max-height:400px}
+.prev,.next{padding:8px 12px;font-size:18px}
+.section-title{font-size:24px}
+.section-title::after{width:40px}
+.card{padding:20px}
+.symbol-strip{gap:6px 14px}
+.mil-symbol-item{padding:8px 12px}
+.mil-symbol-item .sym{font-size:22px}
+.mil-symbol-item .label{font-size:12px}
+#mil-symbols-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px 14px}
+.mil-symbol-cell{padding:10px 8px}
+.mil-symbol-cell .label{font-size:11px}
+.platform-list li{padding:12px 0}
+.download{padding:60px 20px}
+}
+
+@media(max-width:480px){
+.logo-title{font-size:28px}
+.tagline{font-size:14px}
+.grid{grid-template-columns:1fr;gap:20px}
+.features-grid{gap:30px}
+.wrapper{padding:50px 20px}
+.card{padding:18px}
+.btn{padding:12px 24px;font-size:13px}
+}
+
+/* Touch-friendly improvements */
+@media(hover:none){
+.card:hover{transform:none}
+.btn:hover{transform:none}
+.prev:hover,.next:hover{background:rgba(0,0,0,0.6);color:#fff}
+}
+
+/* Smooth scrolling */
+html{scroll-behavior:smooth}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.nav-links a:focus,
+.prev:focus,
+.next:focus,
+.dot:focus{
+outline:2px solid #fff;
+outline-offset:2px;
 }
 </style>
 </head>
@@ -295,8 +595,13 @@ color:#888;
 <nav>
 <div class="nav-inner">
 <div class="nav-logo">ATMAK</div>
-<div class="nav-links">
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+<i class="fas fa-bars"></i>
+</button>
+<div class="nav-links" id="navLinks">
+<a href="#use-cases">Who it's for</a>
 <a href="#features">Features</a>
+<a href="#symbols">MIL Symbols</a>
 <a href="#screens">Preview</a>
 <a href="#platforms">Platforms</a>
 <a href="#download">Purchase</a>
@@ -309,184 +614,749 @@ color:#888;
 <div class="logo-title">ATMAK</div>
 <div class="tagline">Android Tactical Multipurpose Assessment Kit</div>
 <p class="description">
-A tactical situational awareness and mission coordination platform built for Android and cross-platform environments.
+Offline-first maps and field tools for <strong>tactical planning</strong>, <strong>hunting &amp; outdoor</strong>, <strong>commercial fieldwork</strong>, and <strong>business teams</strong>. One app for mission coordination, waypoints, reports, inventory, and team sync — whether you’re in the field, on the trail, or on the job.
+</p>
+<p class="hero-trust">
+Offline-first · Encrypted backup · 35+ map layers · 16 languages · MIL-STD-2525 · Weather &amp; global search
 </p>
 <div class="hero-buttons">
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase</a>
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase on Gumroad</a>
 <a class="btn btn-secondary" href="#features">Explore Features</a>
 </div>
 </header>
 
 <div class="wrapper" id="features">
 
-<h2 class="section-title">Core System</h2>
+<section class="clean-section" id="use-cases" aria-labelledby="use-cases-heading">
+<h2 class="section-title" id="use-cases-heading"><i class="fas fa-users-cog section-icon" aria-hidden="true"></i>Built for more than planning</h2>
+<p class="section-intro" style="margin-bottom:24px">ATMAK serves military and tactical users, and is just as useful for civilians, outdoors enthusiasts, and professionals who need reliable field tools offline.</p>
+<div class="use-cases">
+<div class="use-case-card">
+<div class="uc-icon" aria-hidden="true"><i class="fas fa-map-marked-alt"></i></div>
+<h3>Tactical &amp; planning</h3>
+<p>Mission coordination, PACE plans, SITREPs, MIL-STD symbols. First responders, mil/LE, and teams who need structured field ops.</p>
+</div>
+<div class="use-case-card">
+<div class="uc-icon" aria-hidden="true"><i class="fas fa-hiking"></i></div>
+<h3>Hunting &amp; outdoor</h3>
+<p>35+ layers including hunting topo and imagery, waypoints, tracks, and offline maps. Mark stands, camps, and game — no cell signal needed.</p>
+</div>
+<div class="use-case-card">
+<div class="uc-icon" aria-hidden="true"><i class="fas fa-truck"></i></div>
+<h3>Commercial &amp; field work</h3>
+<p>Site visits, inspections, logistics, and field crews. Inventory, reports, evidence, and team location sharing without constant connectivity.</p>
+</div>
+<div class="use-case-card">
+<div class="uc-icon" aria-hidden="true"><i class="fas fa-briefcase"></i></div>
+<h3>Business &amp; teams</h3>
+<p>Coordination for remote teams, projects, and assets. Shared maps, tasks, and data with optional cloud sync — one tool for the whole team.</p>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-cubes section-icon" aria-hidden="true"></i>Core System</h2>
+<p class="section-intro" style="margin-bottom:20px">The same powerful features whether you use ATMAK for tactical ops, hunting, commercial fieldwork, or business coordination.</p>
 <div class="grid">
-<div class="card"><h3>Interactive Tactical Maps</h3><p>Advanced mapping layers, GPS tracking, route planning, waypoints, markers, MIL-STD symbols, measurement tools, and track recording.</p></div>
-<div class="card"><h3>Mission Planning</h3><p>PACE planning, checkpoints, routes, operational task coordination, and linked mission locations.</p></div>
-<div class="card"><h3>Field Intelligence</h3><p>Intel collection, incident reports, evidence tracking, and tactical investigation tools.</p></div>
-<div class="card"><h3>Team Coordination</h3><p>Team roster, live location sharing, peer-to-peer synchronization, and collaborative operational tools.</p></div>
-<div class="card"><h3>Offline Operation</h3><p>Full offline-first design with local data storage, optional syncing, and safe UI for notches and indicators.</p></div>
-<div class="card"><h3>Secure Data</h3><p>Encrypted backups, JSON/KML/GPX export, WebRTC P2P transfers, and secure recovery.</p></div>
+<div class="card"><h3><i class="fas fa-map block-icon" aria-hidden="true"></i>Interactive Tactical Maps</h3><p>Advanced mapping layers, GPS tracking, route planning, waypoints, markers, MIL-STD symbols, measurement tools, and track recording.</p></div>
+<div class="card"><h3><i class="fas fa-clipboard-list block-icon" aria-hidden="true"></i>Mission Planning</h3><p>PACE planning, checkpoints, routes, operational task coordination, and linked mission locations.</p></div>
+<div class="card"><h3><i class="fas fa-bullseye block-icon" aria-hidden="true"></i>Field Intelligence</h3><p>Intel collection, incident reports, evidence tracking, and tactical investigation tools.</p></div>
+<div class="card"><h3><i class="fas fa-users block-icon" aria-hidden="true"></i>Team Coordination</h3><p>Team roster, live location sharing, peer-to-peer synchronization, and collaborative operational tools.</p></div>
+<div class="card"><h3><i class="fas fa-wifi block-icon" aria-hidden="true"></i>Offline Operation</h3><p>Full offline-first design with local data storage, optional syncing, and safe UI for notches and indicators.</p></div>
+<div class="card"><h3><i class="fas fa-lock block-icon" aria-hidden="true"></i>Secure Data</h3><p>Encrypted backups, JSON/KML/GPX export, WebRTC P2P transfers, and secure recovery.</p></div>
 </div>
+</section>
 
-<h2 class="section-title" id="screens">Application Preview</h2>
-<div class="slideshow">
-<div class="slide"><img src="1.jpg"></div>
-<div class="slide"><img src="2.jpg"></div>
-<div class="slide"><img src="3.jpg"></div>
-<div class="slide"><img src="4.jpg"></div>
-<div class="slide"><img src="5.jpg"></div>
-<div class="slide"><img src="6.jpg"></div>
-<button class="prev" onclick="changeSlide(-1)">❮</button>
-<button class="next" onclick="changeSlide(1)">❯</button>
-</div>
-<div class="dots">
-<span class="dot" onclick="currentSlide(1)"></span>
-<span class="dot" onclick="currentSlide(2)"></span>
-<span class="dot" onclick="currentSlide(3)"></span>
-<span class="dot" onclick="currentSlide(4)"></span>
-<span class="dot" onclick="currentSlide(5)"></span>
-<span class="dot" onclick="currentSlide(6)"></span>
-</div>
+<section class="symbols-section clean-section" id="symbols">
+<h2 class="section-title"><i class="fas fa-bullseye section-icon" aria-hidden="true"></i>MIL-STD-2525 Tactical Symbols</h2>
+<p class="symbols-intro section-intro">ATMAK uses the same MIL-STD-2525 / NATO APP-6 symbology as the app. Waypoints and pins render real tactical symbols from SIDC codes. Below are symbols available on the map (same SIDC set as in ATMAK).</p>
+<div id="mil-symbols-grid"></div>
+<p class="symbols-intro section-intro" style="margin-bottom:0;font-size:12px">Hundreds of asset types with full SIDC support: ground, air, sea, space, CBRN, and more.</p>
+</section>
 
-<h2 class="section-title">System Capabilities</h2>
+<section class="clean-section" id="screens">
+<h2 class="section-title"><i class="fas fa-images section-icon" aria-hidden="true"></i>Application Preview</h2>
+<div class="slideshow" role="region" aria-label="Application preview slideshow">
+<div class="slide"><img src="preview/1.jpg" loading="lazy" alt="ATMAK – Tactical map overview"></div>
+<div class="slide"><img src="preview/2.jpg" loading="lazy" alt="ATMAK – Team and roster view"></div>
+<div class="slide"><img src="preview/3.jpg" loading="lazy" alt="ATMAK – SITREP details"></div>
+<div class="slide"><img src="preview/4.jpg" loading="lazy" alt="ATMAK – PACE plan visualization"></div>
+<div class="slide"><img src="preview/5.jpg" loading="lazy" alt="ATMAK – Assets and inventory"></div>
+<div class="slide"><img src="preview/6.jpg" loading="lazy" alt="ATMAK – Data export and backup"></div>
+<div class="slide"><img src="preview/7.jpg" loading="lazy" alt="ATMAK – Settings and customization"></div>
+<div class="slide"><img src="preview/8.jpg" loading="lazy" alt="ATMAK – Web / desktop layout"></div>
+<div class="slide"><img src="preview/9.jpg" loading="lazy" alt="ATMAK – Android layout"></div>
+<button class="prev" onclick="nextSlide(-1)" aria-label="Previous slide">❮</button>
+<button class="next" onclick="nextSlide(1)" aria-label="Next slide">❯</button>
+</div>
+<div class="dots" role="tablist">
+<span class="dot" onclick="goToSlide(1)" role="tab" aria-label="Go to slide 1" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(2)" role="tab" aria-label="Go to slide 2" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(3)" role="tab" aria-label="Go to slide 3" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(4)" role="tab" aria-label="Go to slide 4" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(5)" role="tab" aria-label="Go to slide 5" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(6)" role="tab" aria-label="Go to slide 6" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(7)" role="tab" aria-label="Go to slide 7" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(8)" role="tab" aria-label="Go to slide 8" tabindex="0"></span>
+<span class="dot" onclick="goToSlide(9)" role="tab" aria-label="Go to slide 9" tabindex="0"></span>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-map-marked-alt section-icon" aria-hidden="true"></i>Advanced Map System</h2>
 <div class="features-grid">
-<div>
-<h3>Map System</h3>
+<div class="feature-block">
+<h3><i class="fas fa-layer-group block-icon" aria-hidden="true"></i>Interactive Map Layers</h3>
 <ul class="feature-list">
-<li>19+ map layers</li>
-<li>Waypoints & asset markers</li>
-<li>MIL-STD-2525 symbols</li>
-<li>Track recording</li>
-<li>MGRS / UTM / DMS coordinates</li>
-<li>KML / GPX support</li>
+<li>35+ map layers: dark, standard, terrain, satellite, light, ESRI, USGS, NatGeo, Waymarked Trails (hiking/cycling/MTB/ski), BLM, OpenSeaMap, DeLorme backcountry</li>
+<li>Specialized layers: nautical, hunting topo, USA/World topo, contour lines</li>
+<li>Waypoints & pins with custom icons</li>
+<li>MIL-STD-2525 tactical symbols</li>
+<li>Asset types (friendly, hostile, neutral)</li>
+<li>Character-map symbols support</li>
 </ul>
 </div>
-<div>
-<h3>Navigation</h3>
+<div class="feature-block">
+<h3><i class="fas fa-draw-polygon block-icon" aria-hidden="true"></i>Drawing & Measurement</h3>
 <ul class="feature-list">
-<li>Turn-by-turn routing</li>
-<li>Multiple route options</li>
-<li>Route avoidance options</li>
-<li>Destination search</li>
-<li>GPS location centering</li>
+<li>Draw shapes: circles, rectangles, lines on map</li>
+<li>Tap shape for Go, Measure, Edit, Add Intel, Delete (same as pins)</li>
+<li>Measure tool for distance and area</li>
+<li>Track recording (breadcrumbs)</li>
+<li>GPS "my location" with high-accuracy</li>
+<li>Compass overlay with device orientation</li>
 </ul>
 </div>
-<div>
-<h3>Team Operations</h3>
+<div class="feature-block">
+<h3><i class="fas fa-route block-icon" aria-hidden="true"></i>Navigation & Coordinates</h3>
 <ul class="feature-list">
-<li>Team roster management</li>
-<li>Live team location tracking</li>
-<li>Shared markers</li>
-<li>Peer-to-peer GPS sync</li>
+<li>Directions with turn-by-turn navigation; recenter button (no auto-snap)</li>
+<li>Multiple route options (Route 1, 2, 3); avoid tolls, highways, ferries when supported</li>
+<li>Live coordinates (MGRS, Maidenhead, DMS, UTM)</li>
+<li>Map center crosshair (Settings)</li>
+<li>Center-on-me (⌂) and reset view (↺)</li>
 </ul>
 </div>
-<div>
-<h3>SITREPs</h3>
+<div class="feature-block">
+<h3><i class="fas fa-database block-icon" aria-hidden="true"></i>Data Management</h3>
 <ul class="feature-list">
-<li>Create situation reports</li>
-<li>Attach to map locations</li>
-<li>Status tracking</li>
-<li>Priority tagging</li>
+<li>KML/GPX import and export</li>
+<li>Location list panel with all pins/shapes</li>
+<li>Map layer panel with quick access</li>
+<li>Map grids and Areas of study (bounds + linked locations)</li>
+<li>Customizable toolbar; Hide UI toggle & fullscreen mode</li>
+<li>Safe zones for notches & home indicators</li>
 </ul>
 </div>
-<div>
-<h3>Mission Planning</h3>
+<div class="feature-block">
+<h3><i class="fas fa-th-large block-icon" aria-hidden="true"></i>Map Quick Toolbar</h3>
 <ul class="feature-list">
-<li>PACE planning system</li>
-<li>Mission checkpoints</li>
-<li>Operational task planning</li>
-<li>Linked mission locations</li>
+<li>Reset view, Add marker, Directions</li>
+<li>Measure tool, Lock pan, Breadcrumbs</li>
+<li>Draw circle/square/line tools</li>
+<li>Camera pin integration</li>
+<li>Customizable tool selection</li>
+<li>Slide-out grid menu for tools</li>
 </ul>
 </div>
-<div>
-<h3>Data & Sync</h3>
+<div class="feature-block">
+<h3><i class="fas fa-star block-icon" aria-hidden="true"></i>Advanced Features</h3>
 <ul class="feature-list">
-<li>Encrypted backups</li>
-<li>JSON / KML / GPX export</li>
-<li>WebRTC P2P transfers</li>
-<li>Offline local storage</li>
+<li>High-accuracy GPS defaults</li>
+<li>Real-time compass orientation</li>
+<li>Live coordinate display</li>
+<li>Full offline map support</li>
+<li>Safe area UI handling</li>
+<li>Multi-touch gesture support</li>
 </ul>
 </div>
 </div>
+</section>
 
-<h2 class="section-title" id="platforms">Platform Support</h2>
+<section class="clean-section" id="platforms">
+<h2 class="section-title"><i class="fas fa-desktop section-icon" aria-hidden="true"></i>Platform Support</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-boxes block-icon" aria-hidden="true"></i>Cross-Platform Deployment</h3>
+<ul class="feature-list">
+<li>Web deployment (www/ folder)</li>
+<li>Windows (EXE, portable, MSI, AppX)</li>
+<li>Android (APK, AAB) native support</li>
+<li>Linux (tar.gz, deb) packages</li>
+<li>Responsive design for all devices</li>
+<li>Safe area handling for modern devices</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-mobile-alt block-icon" aria-hidden="true"></i>Device Compatibility</h3>
+<ul class="feature-list">
+<li>Phone, tablet, desktop support</li>
+<li>Notch and home indicator handling</li>
+<li>Touch and mouse input optimization</li>
+<li>High DPI display support</li>
+<li>Adaptive UI scaling</li>
+<li>Orientation lock support</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-universal-access block-icon" aria-hidden="true"></i>Accessibility Features</h3>
+<ul class="feature-list">
+<li>High-contrast ATAK-style UI</li>
+<li>Focus visible for keyboard users</li>
+<li>Touch-friendly controls</li>
+<li>Reduced tap delay</li>
+<li>RTL language support</li>
+<li>ATAK-style icon consistency</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-compass section-icon" aria-hidden="true"></i>Navigation & Interface</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-bars block-icon" aria-hidden="true"></i>Bottom Navigation</h3>
+<ul class="feature-list">
+<li>Map, Team, SITREPs, Plans, More, Settings</li>
+<li>Global search: locations, SITREPs, missions, team (one search box)</li>
+<li>Quick access to all main sections; contextual icons and badges</li>
+<li>Smooth transitions; active state indicators; gesture support</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-layer-group block-icon" aria-hidden="true"></i>Menu Systems</h3>
+<ul class="feature-list">
+<li>Menu flyout: Map, Satellite, Layers, Settings</li>
+<li>Tools menu with 15+ options</li>
+<li>Slide-out grid menu organization</li>
+<li>Customizable toolbar options</li>
+<li>Quick access shortcuts</li>
+<li>Contextual menu items</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-wrench block-icon" aria-hidden="true"></i>Tools Menu</h3>
+<ul class="feature-list">
+<li>Reset view, Add marker, Add Mil pin, Camera pin</li>
+<li>Location list, Layers, Directions</li>
+<li>Full screen, Hide UI, Measure</li>
+<li>Lock pan, Start track, Draw circle/square/line</li>
+<li>Cancel operations; tool customization</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-users section-icon" aria-hidden="true"></i>Team Operations</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-user-friends block-icon" aria-hidden="true"></i>Team Roster</h3>
+<ul class="feature-list">
+<li>Add team members with roles</li>
+<li>Member status tracking</li>
+<li>Role-based permissions</li>
+<li>Contact information management</li>
+<li>Team hierarchy setup</li>
+<li>Member availability status</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-map-marker-alt block-icon" aria-hidden="true"></i>Team Coordination</h3>
+<ul class="feature-list">
+<li>Link team members to locations</li>
+<li>Live team location tracking</li>
+<li>P2P real-time: GPS, chat, position sharing, markers, routes, drawings, file transfer</li>
+<li>Add received P2P markers to map (persists to your data)</li>
+<li>Collaborative planning; optional cloud sync (Supabase)</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-sync block-icon" aria-hidden="true"></i>Sync Features</h3>
+<ul class="feature-list">
+<li>PACE plan synchronization</li>
+<li>SITREP sharing</li>
+<li>Real-time updates</li>
+<li>Offline sync capability</li>
+<li>Conflict resolution</li>
+<li>Automatic backup</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-file-alt section-icon" aria-hidden="true"></i>SITREPs (Situation Reports)</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-clipboard-list block-icon" aria-hidden="true"></i>Report Management</h3>
+<ul class="feature-list">
+<li>Create detailed situation reports</li>
+<li>Title, content, recommendations; status and priority tagging</li>
+<li>Voice-to-text for SITREP and report inputs</li>
+<li>Report templates; quick creation; history tracking</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-map-pin block-icon" aria-hidden="true"></i>Location Integration</h3>
+<ul class="feature-list">
+<li>Link reports to map locations</li>
+<li>Checkpoint association</li>
+<li>Mission assignment</li>
+<li>Geotagged reports</li>
+<li>Radius-based filtering</li>
+<li>Location-based alerts</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-filter block-icon" aria-hidden="true"></i>Organization</h3>
+<ul class="feature-list">
+<li>Advanced tagging system</li>
+<li>Filter by priority/status</li>
+<li>Search and sort options</li>
+<li>Assignee management</li>
+<li>Report categories</li>
+<li>Export capabilities</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-clipboard-list section-icon" aria-hidden="true"></i>PACE Plans (Primary, Alternate, Contingency, Emergency)</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-tasks block-icon" aria-hidden="true"></i>Planning System</h3>
+<ul class="feature-list">
+<li>PACE role assignment</li>
+<li>Primary, Alternate, Contingency, Emergency</li>
+<li>Plan waypoint management</li>
+<li>Checkpoint creation</li>
+<li>Completion tracking</li>
+<li>Plan validation</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-map-marked-alt block-icon" aria-hidden="true"></i>Location Integration</h3>
+<ul class="feature-list">
+<li>Link plans to locations</li>
+<li>List view with symbols</li>
+<li>Map visualization</li>
+<li>Route planning</li>
+<li>Extraction points</li>
+<li>Rally point management</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-list block-icon" aria-hidden="true"></i>Plan Management</h3>
+<ul class="feature-list">
+<li>Multiple plan support</li>
+<li>Plan templates</li>
+<li>Progress tracking</li>
+<li>Plan sharing</li>
+<li>Version control</li>
+<li>Plan execution</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-th-large section-icon" aria-hidden="true"></i>Advanced Features (More Menu)</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-box block-icon" aria-hidden="true"></i>Operations</h3>
+<ul class="feature-list">
+<li>Assets – inventory & supplies tracking</li>
+<li>Categories, items, consumption tracking</li>
+<li>"~X days supply" calculations</li>
+<li>Missions – tasks & objectives; Operations – dashboard & quick actions</li>
+<li>Resources – vault & RSS feeds (news, weather feeds when online)</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-bullseye block-icon" aria-hidden="true"></i>Intelligence & Reports</h3>
+<ul class="feature-list">
+<li>Intel – location intel (synced with pins)</li>
+<li>CASEVAC – casualty reports & PDF export</li>
+<li>Surveys – tactical forms & data collection</li>
+<li>Persons – warrants, missing, POI</li>
+<li>Incident reports – citations, arrests</li>
+<li>Hot list – plates & vehicles</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-search block-icon" aria-hidden="true"></i>Evidence & Legal</h3>
+<ul class="feature-list">
+<li>Evidence – items & chain of custody</li>
+<li>Photo/video evidence support</li>
+<li>Timestamp verification</li>
+<li>Evidence tagging</li>
+<li>Legal documentation</li>
+<li>Court-ready exports</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-book block-icon" aria-hidden="true"></i>Support & Reference</h3>
+<ul class="feature-list">
+<li>Guides – reference guides</li>
+<li>Rescue – rescue logs</li>
+<li>How to use – searchable help; About – version, credits, changelog</li>
+<li>Reminders – local-only alerts (optional vibration when due)</li>
+<li>Donate – support development</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-database block-icon" aria-hidden="true"></i>Data Management</h3>
+<ul class="feature-list">
+<li>Data – export & import (JSON, KML, GPX); encrypted backup (.atmak.enc)</li>
+<li>All app data in one offline-first blob (locations, SITREPs, team, PACE, inventory, CASEVAC, evidence, etc.); optional cloud sync</li>
+<li>Team sync – P2P real-time GPS, chat, markers</li>
+<li>Chat integration</li>
+<li>Marker sharing; optional Supabase cloud sync</li>
+<li>Encrypted backup (.atmak.enc); cloud backup options</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-comments block-icon" aria-hidden="true"></i>Communication</h3>
+<ul class="feature-list">
+<li>P2P via WebRTC: data transfer, real-time chat, position sharing</li>
+<li>Offer/answer copy-paste or QR code</li>
+<li>Broadcast messages; emergency alerts; status updates</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-cog section-icon" aria-hidden="true"></i>Settings & Customization</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-palette block-icon" aria-hidden="true"></i>Appearance</h3>
+<ul class="feature-list">
+<li>Theme: dark (ATAK-style), light; high-contrast ATAK UI</li>
+<li>Font scale (0.85–1.25)</li>
+<li>High-contrast ATAK-style UI</li>
+<li>RTL support (Hebrew, Arabic)</li>
+<li>Custom color schemes</li>
+<li>Interface density options</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-ruler block-icon" aria-hidden="true"></i>Units & Display</h3>
+<ul class="feature-list">
+<li>Units: metric, imperial</li>
+<li>Coordinate format: MGRS, Maidenhead, decimal</li>
+<li>24-hour clock option</li>
+<li>16 locales: English, Hindi, Spanish, French, Portuguese (BR), Russian, Indonesian, German, Japanese, Korean, Vietnamese, Turkish, Italian, Polish, Hebrew (RTL), Ukrainian</li>
+<li>Date format, time zone, 24-hour clock</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-map block-icon" aria-hidden="true"></i>Map Preferences</h3>
+<ul class="feature-list">
+<li>Default map layer selection</li>
+<li>Compass on map toggle</li>
+<li>Live coordinates on map</li>
+<li>Map center crosshair</li>
+<li>Map pins default visible</li>
+<li>GPS pin default visible</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-route block-icon" aria-hidden="true"></i>Navigation Settings</h3>
+<ul class="feature-list">
+<li>Voice guidance for turn-by-turn</li>
+<li>Route options: avoid tolls, highways</li>
+<li>Orientation lock: any, landscape, portrait</li>
+<li>Map quick toolbar visible</li>
+<li>Low-power mode (reduced GPS)</li>
+<li>GPS accuracy settings</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-cloud block-icon" aria-hidden="true"></i>Data & Backup</h3>
+<ul class="feature-list">
+<li>Backup reminder (7-day prompt)</li>
+<li>Auto-export options</li>
+<li>Sync frequency settings</li>
+<li>Data retention policies</li>
+<li>Encryption preferences</li>
+<li>Backup location selection</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-cogs block-icon" aria-hidden="true"></i>System</h3>
+<ul class="feature-list">
+<li>Permission management</li>
+<li>Notification preferences</li>
+<li>Battery optimization settings</li>
+<li>Storage management</li>
+<li>Network settings</li>
+<li>Diagnostic tools</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-download section-icon" aria-hidden="true"></i>Data Management & Export</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-file-export block-icon" aria-hidden="true"></i>Export Options</h3>
+<ul class="feature-list">
+<li>Full JSON export</li>
+<li>Locations KML export</li>
+<li>Track GPX export</li>
+<li>Encrypted backup (.atmak.enc)</li>
+<li>PDF report generation</li>
+<li>CSV data export</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-file-import block-icon" aria-hidden="true"></i>Import Capabilities</h3>
+<ul class="feature-list">
+<li>JSON import (full replace)</li>
+<li>KML/GPX import (merge)</li>
+<li>Shapefile support</li>
+<li>CSV data import</li>
+<li>Configuration import</li>
+<li>Bulk data processing</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-exchange-alt block-icon" aria-hidden="true"></i>P2P Transfer</h3>
+<ul class="feature-list">
+<li>WebRTC data transfer</li>
+<li>Offer/answer copy-paste</li>
+<li>QR code sharing</li>
+<li>Direct device connection</li>
+<li>Progress tracking</li>
+<li>Error recovery</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-bell section-icon" aria-hidden="true"></i>Notifications & System Features</h2>
+<div class="features-grid">
+<div class="feature-block">
+<h3><i class="fas fa-bell block-icon" aria-hidden="true"></i>Notification System</h3>
+<ul class="feature-list">
+<li>Notifications icon in top bar</li>
+<li>Weather: fetch by location (Open-Meteo, no API key) or manual entry for offline</li>
+<li>Backup reminder modal; one-tap export from notifications</li>
+<li>Reminders with optional vibration when due</li>
+<li>Priority-based alerts; custom notification sounds</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-key block-icon" aria-hidden="true"></i>Permissions</h3>
+<ul class="feature-list">
+<li>Optional location permission</li>
+<li>Notifications permission</li>
+<li>Device orientation access</li>
+<li>Camera permission for pins</li>
+<li>Storage access</li>
+<li>Network permission</li>
+</ul>
+</div>
+<div class="feature-block">
+<h3><i class="fas fa-play block-icon" aria-hidden="true"></i>First Run Setup</h3>
+<ul class="feature-list">
+<li>Guided onboarding; permission request flow (location, notifications, orientation)</li>
+<li>Default configuration; tutorial integration</li>
+<li>Works fully offline; data stored locally; sync when online</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="clean-section">
+<h2 class="section-title"><i class="fas fa-desktop section-icon" aria-hidden="true"></i>Where ATMAK Runs</h2>
+<p class="section-intro">One purchase, multiple platforms. Deploy the same app on the devices you use.</p>
 <ul class="platform-list">
 <li><i class="fa-brands fa-android"></i> Android <span>APK / AAB</span></li>
 <li><i class="fa-solid fa-globe"></i> Web <span>Browser</span></li>
 <li><i class="fa-brands fa-windows"></i> Windows <span>EXE / MSI</span></li>
 <li><i class="fa-brands fa-linux"></i> Linux <span>tar.gz / deb</span></li>
 </ul>
+</section>
 
 </div>
 
 <div class="download" id="download">
 <h2>Purchase ATMAK</h2>
-<p style="color:#cfcfcf;margin-bottom:30px">
-Access releases and downloads via GumRoad.
+<p style="color:#cfcfcf;margin-bottom:12px;max-width:560px;margin-left:auto;margin-right:auto">
+One license for tactical, hunting, commercial, or business use. Android, Windows, Linux, and web — access releases and downloads via Gumroad.
 </p>
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase on GumRoad</a>
+<p style="color:#999;font-size:13px;margin-bottom:28px">Military, first responder, outdoor, and civilian users welcome.</p>
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase on Gumroad</a>
 </div>
 
 <footer>
-ATMAK — Android Tactical Multipurpose Assessment Kit
+ATMAK — Android Tactical Multipurpose Assessment Kit · Version 2.1.x (see app About for current)
 </footer>
 
 <script>
-/* SLIDESHOW */
-let slideIndex=0;
-function showSlides(){
-let slides=document.getElementsByClassName("slide");
-let dots=document.getElementsByClassName("dot");
-for(let i=0;i<slides.length;i++) slides[i].style.display="none";
-slideIndex++; if(slideIndex>slides.length) slideIndex=1;
-for(let i=0;i<dots.length;i++) dots[i].classList.remove("active");
-slides[slideIndex-1].style.display="block";
-dots[slideIndex-1].classList.add("active");
-setTimeout(showSlides,4000);
+/* MOBILE MENU */
+document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('active');
+    this.innerHTML = document.getElementById('navLinks').classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+});
+
+/* Close menu when clicking on links */
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+        document.getElementById('navToggle').innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+
+/* TOUCH SWIPE FOR SLIDESHOW */
+let touchStartX = 0;
+let touchEndX = 0;
+const slideshow = document.querySelector('.slideshow');
+
+slideshow.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+slideshow.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchEndX < touchStartX - 50) nextSlide(1); // Swipe left
+    if (touchEndX > touchStartX + 50) nextSlide(-1); // Swipe right
 }
-showSlides();
-function changeSlide(n){slideIndex+=n-1; showSlides();}
-function currentSlide(n){slideIndex=n-1; showSlides();}
+
+/* KEYBOARD NAVIGATION FOR DOTS */
+document.querySelectorAll('.dot').forEach((dot, index) => {
+    dot.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            goToSlide(index + 1);
+        }
+    });
+});
+
+/* SLIDESHOW */
+let slideIndex=1;
+let slideTimer=null;
+function showSlide(n){
+  const slides=document.getElementsByClassName("slide");
+  const dots=document.getElementsByClassName("dot");
+  if(slides.length===0)return;
+  if(n>slides.length) slideIndex=1;
+  if(n<1) slideIndex=slides.length;
+  for(let i=0;i<slides.length;i++) slides[i].style.display="none";
+  for(let i=0;i<dots.length;i++) dots[i].classList.remove("active");
+  slides[slideIndex-1].style.display="flex";
+  if(dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+}
+function nextSlide(n){
+  slideIndex+=n;
+  showSlide(slideIndex);
+  resetSlideTimer();
+}
+function goToSlide(n){
+  slideIndex=n;
+  showSlide(slideIndex);
+  resetSlideTimer();
+}
+function resetSlideTimer(){
+  if(slideTimer) clearInterval(slideTimer);
+  slideTimer=setInterval(()=>{slideIndex++; showSlide(slideIndex);},4000);
+}
+showSlide(slideIndex);
+resetSlideTimer();
 
 /* INTERACTIVE BACKGROUND */
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
-let w,h,markers=[],sweepAngle=0;
-function resize(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;}
+let w,h,markers=[],blips=[],sweepAngle=0;
+function resize(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; initBlips();}
 window.addEventListener("resize",resize);
 resize();
 
 class Marker{
 constructor(){this.x=Math.random()*w; this.y=Math.random()*h; this.pulse=Math.random()*Math.PI*2;}
 update(){this.pulse+=0.04;}
-draw(){let r=2+Math.sin(this.pulse)*2; ctx.beginPath(); ctx.arc(this.x,this.y,r,0,Math.PI*2); ctx.fillStyle="rgba(255,255,255,0.8)"; ctx.fill(); ctx.beginPath(); ctx.arc(this.x,this.y,r+6,0,Math.PI*2); ctx.strokeStyle="rgba(255,255,255,0.15)"; ctx.stroke();}
+draw(){let r=2+Math.sin(this.pulse)*1.5; ctx.beginPath(); ctx.arc(this.x,this.y,r,0,Math.PI*2); ctx.fillStyle="rgba(255,255,255,0.75)"; ctx.fill(); ctx.beginPath(); ctx.arc(this.x,this.y,r+5,0,Math.PI*2); ctx.strokeStyle="rgba(76,175,80,0.2)"; ctx.lineWidth=1; ctx.stroke();}
 }
 
-for(let i=0;i<30;i++) markers.push(new Marker());
+for(let i=0;i<35;i++) markers.push(new Marker());
+function initBlips(){blips=[]; for(let i=0;i<18;i++){blips.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.15,vy:(Math.random()-0.5)*0.15,pulse:Math.random()*Math.PI*2,r:3+Math.random()*4});}}
 
-function drawGrid(){const size=80; ctx.strokeStyle="rgba(255,255,255,0.05)";
-for(let x=0;x<w;x+=size){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
-for(let y=0;y<h;y+=size){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+function drawGrid(){const size=70; ctx.strokeStyle="rgba(255,255,255,0.04)"; ctx.lineWidth=1;
+for(let x=0;x<=w;x+=size){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+for(let y=0;y<=h;y+=size){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
 }
-
+function drawRadarRings(){const cx=w/2,cy=h/2,maxR=Math.min(w,h)*0.52; ctx.strokeStyle="rgba(76,175,80,0.06)"; ctx.lineWidth=1;
+for(let r=80;r<maxR;r+=80){ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();}
+}
 function drawRadarSweep(){
-const cx=w/2; const cy=h/2; const radius=Math.min(w,h)/2;
-sweepAngle+=0.002; ctx.save(); ctx.translate(cx,cy); ctx.rotate(sweepAngle);
+const cx=w/2,cy=h/2,radius=Math.min(w,h)/2;
+sweepAngle+=0.0018; ctx.save(); ctx.translate(cx,cy); ctx.rotate(sweepAngle);
 const grad=ctx.createRadialGradient(0,0,0,0,0,radius);
-grad.addColorStop(0,"rgba(255,255,255,0.05)"); grad.addColorStop(1,"rgba(0,0,0,0)");
-ctx.beginPath(); ctx.moveTo(0,0); ctx.arc(0,0,radius,0,0.25); ctx.closePath();
-ctx.fillStyle=grad; ctx.fill(); ctx.restore();
+grad.addColorStop(0,"rgba(76,175,80,0.08)"); grad.addColorStop(0.4,"rgba(76,175,80,0.02)"); grad.addColorStop(1,"rgba(0,0,0,0)");
+ctx.beginPath(); ctx.moveTo(0,0); ctx.arc(0,0,radius,0,0.2); ctx.closePath(); ctx.fillStyle=grad; ctx.fill(); ctx.restore();
 }
-
+function updateBlips(){blips.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.pulse+=0.03;if(b.x<0||b.x>w)b.vx*=-1;if(b.y<0||b.y>h)b.vy*=-1;});}
+function drawBlips(){blips.forEach(b=>{const glow=2+Math.sin(b.pulse)*1.5; ctx.beginPath(); ctx.arc(b.x,b.y,glow,0,Math.PI*2); ctx.fillStyle="rgba(76,175,80,0.35)"; ctx.fill(); ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fillStyle="rgba(255,255,255,0.9)"; ctx.fill();});}
 function animate(){
 ctx.clearRect(0,0,w,h);
 drawGrid();
+drawRadarRings();
 drawRadarSweep();
+updateBlips();
+drawBlips();
 markers.forEach(m=>{m.update(); m.draw();});
 requestAnimationFrame(animate);
 }
 animate();
+
+/* MIL-STD-2525 real symbols – same SIDC as ATMAK app (assetTypes.ts) */
+</script>
+<script type="module">
+(function(){
+var grid=document.getElementById("mil-symbols-grid");
+if(!grid)return;
+var list=[
+  {sidc:"SFGPU----------",label:"Friendly unit"},{sidc:"SHGPU----------",label:"Hostile"},{sidc:"SFGPUCI----------",label:"Infantry"},{sidc:"SFGPUCA----------",label:"Armor / Tank"},{sidc:"SFGPUCF----------",label:"Artillery"},{sidc:"SFGPUCR----------",label:"Recon"},{sidc:"SFGPUSS----------",label:"Supply point"},{sidc:"SFAPMF----------",label:"Aircraft"},{sidc:"SFAPMH----------",label:"Helicopter"},{sidc:"SFAPMFQ----------",label:"UAV / Drone"},{sidc:"SFAPMHO---------",label:"MEDEVAC"},{sidc:"SFAPMHH---------",label:"Search & rescue"},{sidc:"SFGPUSMM---------",label:"Casualty point"},{sidc:"SFGPIBN---------",label:"Naval / Coast guard"},{sidc:"SFGPIBA---------",label:"Air base"},{sidc:"SFGPIB----------",label:"FOB / Army base"},{sidc:"SFGPUHQ---------",label:"Headquarters"},{sidc:"SFGPUCM----------",label:"Missile site"},{sidc:"SFGPUCFM---------",label:"Mortar"},{sidc:"SFGPUCE----------",label:"Engineer"},{sidc:"SFGPUCL----------",label:"Logistics / Convoy"},{sidc:"SFGPURP---------",label:"Rally point"},{sidc:"SFGPIBA---------",label:"Landing zone"},{sidc:"SFGPUMI---------",label:"Minefield"},{sidc:"SFGPUUA---------",label:"Restricted / Hot zone"},{sidc:"SNGPU----------",label:"Neutral"},{sidc:"SFSPC------------",label:"Naval vessel"},{sidc:"SFSU-------------",label:"Submarine"},{sidc:"SFGPIMF---------",label:"Satellite / Space"}
+];
+var fallback=[{char:"◎",c:"friendly"},{char:"✕",c:"hostile"},{char:"⊕"},{char:"◆"},{char:"◈"},{char:"◐"},{char:"▣"},{char:"△"},{char:"⬟"},{char:"△"},{char:"✚",c:"medical"},{char:"✚",c:"medical"},{char:"⚓"},{char:"△"},{char:"⛋"},{char:"⌖"},{char:"◈"},{char:"⚒"},{char:"◆"},{char:"⚑"},{char:"⬟"},{char:"⚠",c:"hazard"},{char:"⊘",c:"hazard"},{char:"▢",c:"neutral"},{char:"⚓"},{char:"◇"}];
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML;}
+function renderFallback(){
+  list.forEach(function(item,i){
+    var fb=fallback[i]||fallback[0];
+    var cell=document.createElement("div");
+    cell.className="mil-symbol-cell";
+    cell.innerHTML='<div class="mil-symbol-svg"><span class="sym '+(fb.c||"")+'">'+fb.char+'</span></div><span class="label">'+esc(item.label)+'</span>';
+    grid.appendChild(cell);
+  });
+}
+(async function(){
+  try{
+    var ms=await import("https://esm.sh/milsymbol@2.2.0");
+    var Sym=ms.default&&ms.default.Symbol?ms.default.Symbol:ms.Symbol;
+    if(!Sym){renderFallback();return;}
+    list.forEach(function(item){
+      var sym=new Sym(item.sidc,{size:40});
+      var cell=document.createElement("div");
+      cell.className="mil-symbol-cell";
+      cell.innerHTML='<div class="mil-symbol-svg">'+sym.asSVG()+'</div><span class="label">'+esc(item.label)+'</span>';
+      grid.appendChild(cell);
+    });
+  }catch(e){ renderFallback(); }
+})();
+})();
 </script>
 
 </body>
