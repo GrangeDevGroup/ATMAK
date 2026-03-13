@@ -50,6 +50,8 @@ background:rgba(0,0,0,0.85);
 backdrop-filter:blur(6px);
 border-bottom:1px solid var(--border);
 z-index:10;
+padding-left: env(safe-area-inset-left);
+padding-right: env(safe-area-inset-right);
 }
 
 .nav-inner{
@@ -75,6 +77,9 @@ font-size:14px;
 transition:color 0.2s ease, border-color 0.2s ease;
 border-bottom:2px solid transparent;
 padding-bottom:2px;
+display:inline-flex;
+align-items:center;
+gap:6px;
 }
 
 .nav-links a:hover{color:#fff; border-bottom-color:var(--accent)}
@@ -126,7 +131,7 @@ border-bottom:none;
 
 /* HERO */
 header{
-padding:110px 20px 120px;
+padding:110px env(safe-area-inset-left) 120px env(safe-area-inset-right);
 text-align:center;
 border-bottom:1px solid var(--border);
 }
@@ -169,6 +174,7 @@ display:flex;
 justify-content:center;
 flex-wrap:wrap;
 gap:15px;
+padding:0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 /* USE CASES – who ATMAK is for */
@@ -222,6 +228,10 @@ border-radius:6px;
 text-decoration:none;
 font-size:14px;
 transition:.2s;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
 }
 
 .btn-primary{background:#fff;color:#000;box-shadow:0 4px 20px rgba(255,255,255,0.15)}
@@ -509,7 +519,7 @@ font-size:13px;
 /* DOWNLOAD */
 .download{
 text-align:center;
-padding:90px 20px;
+padding:90px env(safe-area-inset-left) 90px env(safe-area-inset-right);
 background:linear-gradient(180deg,rgba(5,8,5,0.97) 0%,rgba(0,0,0,0.99) 100%);
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
@@ -535,10 +545,13 @@ color:#888;
 .tagline{font-size:16px}
 .description{font-size:14px}
 .hero-trust{font-size:12px}
-header{padding:80px 20px 90px}
-.hero-buttons{flex-direction:column;align-items:center}
+header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
+.hero-buttons{flex-direction:column;align-items:center;padding:0 20px}
 .btn{width:100%;max-width:280px;text-align:center}
-.nav-inner{padding:12px 20px}
+.btn-github{width:100%;max-width:280px;justify-content:center}
+.btn-google-drive{width:100%;max-width:280px;justify-content:center}
+.btn-donate{width:100%;max-width:280px;justify-content:center}
+.nav-inner{padding:12px env(safe-area-inset-right) 12px env(safe-area-inset-left)}
 .slideshow{margin:40px 20px}
 .slide{height:50vh;max-height:400px}
 .prev,.next{padding:8px 12px;font-size:18px}
@@ -553,7 +566,7 @@ header{padding:80px 20px 90px}
 .mil-symbol-cell{padding:10px 8px}
 .mil-symbol-cell .label{font-size:11px}
 .platform-list li{padding:12px 0}
-.download{padding:60px 20px}
+.download{padding:60px env(safe-area-inset-left) 60px env(safe-area-inset-right)}
 }
 
 @media(max-width:480px){
@@ -561,15 +574,117 @@ header{padding:80px 20px 90px}
 .tagline{font-size:14px}
 .grid{grid-template-columns:1fr;gap:20px}
 .features-grid{gap:30px}
-.wrapper{padding:50px 20px}
+.wrapper{padding:50px env(safe-area-inset-left) 50px env(safe-area-inset-right)}
 .card{padding:18px}
 .btn{padding:12px 24px;font-size:13px}
+.btn-github{padding:12px 24px;font-size:13px}
+.btn-google-drive{padding:12px 24px;font-size:13px}
+.btn-donate{padding:12px 24px;font-size:13px}
+}
+
+/* Safe area support for notches and home indicators */
+.safe-area-container {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Mobile-friendly button spacing */
+.hero-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+}
+
+/* Dropbox button styling */
+.btn-github {
+  background: #0061ff;
+  color: #fff;
+  border: 1px solid #0061ff;
+  padding: 14px 28px;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-github:hover {
+  background: #0052cc;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 97, 255, 0.25);
+}
+
+.btn-github i {
+  font-size: 18px;
+}
+
+/* Google Drive button styling */
+.btn-google-drive {
+  background: #4285f4;
+  color: #fff;
+  border: 1px solid #4285f4;
+  padding: 14px 28px;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-google-drive:hover {
+  background: #3367d6;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(66, 133, 244, 0.25);
+}
+
+.btn-google-drive i {
+  font-size: 18px;
+}
+
+/* Donate button styling */
+.btn-donate {
+  background: #ff6b6b;
+  color: #fff;
+  border: 1px solid #ff6b6b;
+  padding: 14px 28px;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-donate:hover {
+  background: #ff5252;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(255, 107, 107, 0.25);
+}
+
+.btn-donate i {
+  font-size: 18px;
 }
 
 /* Touch-friendly improvements */
 @media(hover:none){
 .card:hover{transform:none}
 .btn:hover{transform:none}
+.btn-github:hover{transform:none}
+.btn-google-drive:hover{transform:none}
+.btn-donate:hover{transform:none}
 .prev:hover,.next:hover{background:rgba(0,0,0,0.6);color:#fff}
 }
 
@@ -599,12 +714,12 @@ outline-offset:2px;
 <i class="fas fa-bars"></i>
 </button>
 <div class="nav-links" id="navLinks">
-<a href="#use-cases">Who it's for</a>
-<a href="#features">Features</a>
-<a href="#symbols">MIL Symbols</a>
-<a href="#screens">Preview</a>
-<a href="#platforms">Platforms</a>
-<a href="#download">Purchase</a>
+<a href="#use-cases"><i class="fas fa-users-cog"></i> Who it's for</a>
+<a href="#features"><i class="fas fa-cubes"></i> Features</a>
+<a href="#symbols"><i class="fas fa-bullseye"></i> MIL Symbols</a>
+<a href="#screens"><i class="fas fa-images"></i> Preview</a>
+<a href="#platforms"><i class="fas fa-desktop"></i> Platforms</a>
+<a href="#download"><i class="fas fa-shopping-cart"></i> Purchase</a>
 </div>
 </div>
 </nav>
@@ -620,8 +735,17 @@ Offline-first maps and field tools for <strong>tactical planning</strong>, <stro
 Offline-first · Encrypted backup · 35+ map layers · 16 languages · MIL-STD-2525 · Weather &amp; global search
 </p>
 <div class="hero-buttons">
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase on Gumroad</a>
-<a class="btn btn-secondary" href="#features">Explore Features</a>
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak"><i class="fas fa-shopping-cart"></i> Purchase On Gumroad</a>
+<a class="btn btn-secondary" href="#features"><i class="fas fa-compass"></i> Explore Features</a>
+<a class="btn btn-github" href="https://www.dropbox.com/scl/fo/ul60fnwho1qnaa05nea73/AFtoFKClpzZ1NH1Hccu5r5E?rlkey=yfplji0n8n9tl9ae2hvfgqrnc&st=qcrvby54&dl=0" target="_blank" rel="noopener">
+<i class="fab fa-dropbox"></i> Download Beta On Dropbox
+</a>
+<a class="btn btn-google-drive" href="https://drive.google.com/drive/folders/1YXgFNgLPF2u3NvN-3HejTAVwi3NpUI81?usp=drive_link" target="_blank" rel="noopener">
+<i class="fab fa-google-drive"></i> Download Beta On Google Drive
+</a>
+<a class="btn btn-donate" href="https://www.paypal.com/donate/?hosted_button_id=8L5CZYBRCMGTC" target="_blank" rel="noopener">
+<i class="fas fa-heart"></i> Donate
+</a>
 </div>
 </header>
 
@@ -1193,11 +1317,20 @@ Offline-first · Encrypted backup · 35+ map layers · 16 languages · MIL-STD-2
 One license for tactical, hunting, commercial, or business use. Android, Windows, Linux, and web — access releases and downloads via Gumroad.
 </p>
 <p style="color:#999;font-size:13px;margin-bottom:28px">Military, first responder, outdoor, and civilian users welcome.</p>
-<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak">Purchase on Gumroad</a>
+<a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak"><i class="fas fa-shopping-cart"></i> Purchase On Gumroad</a>
+<a class="btn btn-github" href="https://www.dropbox.com/scl/fo/ul60fnwho1qnaa05nea73/AFtoFKClpzZ1NH1Hccu5r5E?rlkey=yfplji0n8n9tl9ae2hvfgqrnc&st=qcrvby54&dl=0" target="_blank" rel="noopener">
+<i class="fab fa-dropbox"></i> Try Beta Version On Github
+</a>
+<a class="btn btn-google-drive" href="https://drive.google.com/drive/folders/1YXgFNgLPF2u3NvN-3HejTAVwi3NpUI81?usp=drive_link" target="_blank" rel="noopener">
+<i class="fab fa-google-drive"></i> Try Beta On Google Drive
+</a>
+<a class="btn btn-donate" href="https://www.paypal.com/donate/?hosted_button_id=8L5CZYBRCMGTC" target="_blank" rel="noopener">
+<i class="fas fa-heart"></i> Donate
+</a>
 </div>
 
 <footer>
-ATMAK — Android Tactical Multipurpose Assessment Kit · Version 2.1.x (see app About for current)
+ATMAK — Android Tactical Multipurpose Assessment Kit · Version 0.0.2 (see app About for current)
 </footer>
 
 <script>
