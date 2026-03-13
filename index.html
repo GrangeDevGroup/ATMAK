@@ -286,6 +286,7 @@ padding:25px;
 transition:.2s;
 display:flex;
 flex-direction:column;
+min-height:180px;
 }
 
 .card:hover{
@@ -538,6 +539,8 @@ color:#888;
 @media(max-width:900px){
 .grid{grid-template-columns:1fr 1fr}
 .features-grid{grid-template-columns:1fr}
+.clean-section{padding:25px 20px}
+.features-grid{padding:25px 20px}
 }
 
 @media(max-width:768px){
@@ -558,6 +561,11 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 .section-title{font-size:24px}
 .section-title::after{width:40px}
 .card{padding:20px}
+.grid{grid-template-columns:1fr;gap:20px}
+.grid .card:nth-last-child(2){grid-column:auto}
+.grid .card:nth-last-child(1){grid-column:auto}
+.clean-section{padding:20px 15px;margin-bottom:50px}
+.features-grid{padding:20px 15px;gap:30px}
 .symbol-strip{gap:6px 14px}
 .mil-symbol-item{padding:8px 12px}
 .mil-symbol-item .sym{font-size:22px}
@@ -572,14 +580,27 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 @media(max-width:480px){
 .logo-title{font-size:28px}
 .tagline{font-size:14px}
-.grid{grid-template-columns:1fr;gap:20px}
-.features-grid{gap:30px}
+.grid{grid-template-columns:1fr;gap:15px}
+.features-grid{gap:25px}
 .wrapper{padding:50px env(safe-area-inset-left) 50px env(safe-area-inset-right)}
-.card{padding:18px}
+.card{padding:18px;min-height:160px}
 .btn{padding:12px 24px;font-size:13px}
 .btn-github{padding:12px 24px;font-size:13px}
 .btn-google-drive{padding:12px 24px;font-size:13px}
 .btn-donate{padding:12px 24px;font-size:13px}
+.clean-section{padding:15px 12px;margin-bottom:40px}
+.features-grid{padding:15px 12px}
+.section-title{font-size:20px}
+.section-intro{font-size:13px}
+.card h3{font-size:16px}
+.card p{font-size:13px}
+.feature-list li{font-size:13px;padding:6px 0}
+.slideshow{margin:30px 15px}
+.slide{height:45vh;max-height:350px}
+.prev,.next{padding:6px 10px;font-size:16px}
+.dot{width:8px;height:8px;margin:0 3px}
+.platform-list li{font-size:14px}
+.download{padding:40px env(safe-area-inset-left) 40px env(safe-area-inset-right)}
 }
 
 /* Safe area support for notches and home indicators */
