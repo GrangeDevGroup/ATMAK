@@ -234,11 +234,11 @@ justify-content:center;
 gap:8px;
 }
 
-.btn-primary{background:#fff;color:#000;box-shadow:0 4px 20px rgba(255,255,255,0.15)}
+.btn-primary{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.5)}
 .btn-secondary{border:1px solid rgba(255,255,255,0.5);color:#fff;background:rgba(255,255,255,0.05)}
 
 .btn:hover{transform:translateY(-2px)}
-.btn-primary:hover{box-shadow:0 6px 28px rgba(255,255,255,0.25)}
+.btn-primary:hover{background:rgba(255,255,255,0.2);border-color:#fff}
 .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,0.1)}
 
 /* LAYOUT */
@@ -551,9 +551,9 @@ color:#888;
 header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 .hero-buttons{flex-direction:column;align-items:center;padding:0 20px}
 .btn{width:100%;max-width:280px;text-align:center}
-.btn-github{width:100%;max-width:280px;justify-content:center}
+.btn-dropbox{width:100%;max-width:280px;justify-content:center}
 .btn-google-drive{width:100%;max-width:280px;justify-content:center}
-.btn-donate{width:100%;max-width:280px;justify-content:center}
+.btn-support{width:100%;max-width:280px;justify-content:center}
 .nav-inner{padding:12px env(safe-area-inset-right) 12px env(safe-area-inset-left)}
 .slideshow{margin:40px 20px}
 .slide{height:50vh;max-height:400px}
@@ -585,9 +585,9 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 .wrapper{padding:50px env(safe-area-inset-left) 50px env(safe-area-inset-right)}
 .card{padding:18px;min-height:160px}
 .btn{padding:12px 24px;font-size:13px}
-.btn-github{padding:12px 24px;font-size:13px}
+.btn-dropbox{padding:12px 24px;font-size:13px}
 .btn-google-drive{padding:12px 24px;font-size:13px}
-.btn-donate{padding:12px 24px;font-size:13px}
+.btn-support{padding:12px 24px;font-size:13px}
 .clean-section{padding:15px 12px;margin-bottom:40px}
 .features-grid{padding:15px 12px}
 .section-title{font-size:20px}
@@ -619,10 +619,10 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 }
 
 /* Dropbox button styling */
-.btn-github {
-  background: #0061ff;
-  color: #fff;
-  border: 1px solid #0061ff;
+.btn-dropbox {
+  background: rgba(0, 97, 255, 0.1);
+  color: #0061ff;
+  border: 1px solid rgba(0, 97, 255, 0.5);
   padding: 14px 28px;
   font-weight: 600;
   border-radius: 6px;
@@ -634,22 +634,22 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
   gap: 8px;
 }
 
-.btn-github:hover {
-  background: #0052cc;
-  color: #fff;
+.btn-dropbox:hover {
+  background: rgba(0, 97, 255, 0.2);
+  color: #0061ff;
+  border-color: #0061ff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(0, 97, 255, 0.25);
 }
 
-.btn-github i {
+.btn-dropbox i {
   font-size: 18px;
 }
 
 /* Google Drive button styling */
 .btn-google-drive {
-  background: #4285f4;
-  color: #fff;
-  border: 1px solid #4285f4;
+  background: rgba(66, 133, 244, 0.1);
+  color: #4285f4;
+  border: 1px solid rgba(66, 133, 244, 0.5);
   padding: 14px 28px;
   font-weight: 600;
   border-radius: 6px;
@@ -662,21 +662,21 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 }
 
 .btn-google-drive:hover {
-  background: #3367d6;
-  color: #fff;
+  background: rgba(66, 133, 244, 0.2);
+  color: #4285f4;
+  border-color: #4285f4;
   transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(66, 133, 244, 0.25);
 }
 
 .btn-google-drive i {
   font-size: 18px;
 }
 
-/* Donate button styling */
-.btn-donate {
-  background: #ff6b6b;
-  color: #fff;
-  border: 1px solid #ff6b6b;
+/* Support/Contribute button styling */
+.btn-support {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.5);
   padding: 14px 28px;
   font-weight: 600;
   border-radius: 6px;
@@ -688,14 +688,14 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
   gap: 8px;
 }
 
-.btn-donate:hover {
-  background: #ff5252;
-  color: #fff;
+.btn-support:hover {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border-color: #4CAF50;
   transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(255, 107, 107, 0.25);
 }
 
-.btn-donate i {
+.btn-support i {
   font-size: 18px;
 }
 
@@ -703,9 +703,9 @@ header{padding:80px env(safe-area-inset-left) 90px env(safe-area-inset-right)}
 @media(hover:none){
 .card:hover{transform:none}
 .btn:hover{transform:none}
-.btn-github:hover{transform:none}
+.btn-dropbox:hover{transform:none}
 .btn-google-drive:hover{transform:none}
-.btn-donate:hover{transform:none}
+.btn-support:hover{transform:none}
 .prev:hover,.next:hover{background:rgba(0,0,0,0.6);color:#fff}
 }
 
@@ -758,15 +758,6 @@ Offline-first · Encrypted backup · 35+ map layers · 16 languages · MIL-STD-2
 <div class="hero-buttons">
 <a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak"><i class="fas fa-shopping-cart"></i> Purchase On Gumroad</a>
 <a class="btn btn-secondary" href="#features"><i class="fas fa-compass"></i> Explore Features</a>
-<a class="btn btn-github" href="https://www.dropbox.com/scl/fo/ul60fnwho1qnaa05nea73/AFtoFKClpzZ1NH1Hccu5r5E?rlkey=yfplji0n8n9tl9ae2hvfgqrnc&st=qcrvby54&dl=0" target="_blank" rel="noopener">
-<i class="fab fa-dropbox"></i> Download Beta On Dropbox
-</a>
-<a class="btn btn-google-drive" href="https://drive.google.com/drive/folders/1YXgFNgLPF2u3NvN-3HejTAVwi3NpUI81?usp=drive_link" target="_blank" rel="noopener">
-<i class="fab fa-google-drive"></i> Download Beta On Google Drive
-</a>
-<a class="btn btn-donate" href="https://www.paypal.com/donate/?hosted_button_id=8L5CZYBRCMGTC" target="_blank" rel="noopener">
-<i class="fas fa-heart"></i> Donate
-</a>
 </div>
 </header>
 
@@ -1339,14 +1330,14 @@ One license for tactical, hunting, commercial, or business use. Android, Windows
 </p>
 <p style="color:#999;font-size:13px;margin-bottom:28px">Military, first responder, outdoor, and civilian users welcome.</p>
 <a class="btn btn-primary" href="https://grangedev.gumroad.com/l/atmak"><i class="fas fa-shopping-cart"></i> Purchase On Gumroad</a>
-<a class="btn btn-github" href="https://www.dropbox.com/scl/fo/ul60fnwho1qnaa05nea73/AFtoFKClpzZ1NH1Hccu5r5E?rlkey=yfplji0n8n9tl9ae2hvfgqrnc&st=qcrvby54&dl=0" target="_blank" rel="noopener">
-<i class="fab fa-dropbox"></i> Try Beta On Github
+<a class="btn btn-dropbox" href="https://www.dropbox.com/scl/fo/ul60fnwho1qnaa05nea73/AFtoFKClpzZ1NH1Hccu5r5E?rlkey=yfplji0n8n9tl9ae2hvfgqrnc&st=qcrvby54&dl=0" target="_blank" rel="noopener">
+<i class="fab fa-dropbox"></i> Try Beta On Dropbox
 </a>
 <a class="btn btn-google-drive" href="https://drive.google.com/drive/folders/1YXgFNgLPF2u3NvN-3HejTAVwi3NpUI81?usp=drive_link" target="_blank" rel="noopener">
 <i class="fab fa-google-drive"></i> Try Beta On Google Drive
 </a>
-<a class="btn btn-donate" href="https://www.paypal.com/donate/?hosted_button_id=8L5CZYBRCMGTC" target="_blank" rel="noopener">
-<i class="fas fa-heart"></i> Donate
+<a class="btn btn-support" href="https://www.paypal.com/donate/?hosted_button_id=8L5CZYBRCMGTC" target="_blank" rel="noopener">
+<i class="fas fa-heart"></i> Support & Contribute
 </a>
 </div>
 
